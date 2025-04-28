@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c756b6">  <link rel="stylesheet" href="index.css">
+  <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#317EFB">
+
+  <title>Contact Manager</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Contact Manager</h1>
+    
+    <form id="contact-form">
+      <input type="text" id="first-name" placeholder="First Name" required>
+      <input type="text" id="surname" placeholder="Surname" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="tel" id="telephone" placeholder="Telephone Number" required>
+      <button type="submit" class="add-btn">Add Contact</button>
+    </form>
+
+    <table id="contacts-table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Surname</th>
+          <th>Email</th>
+          <th>Telephone</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="contacts-list">
+       
+      </tbody>
+    </table>
+  </div>
+
+    <script src="app.js">
+    
+    
+ // This is a function that will register (set up) a service worker
+const registerServiceWorker = async () => {
+  // Check if the browser knows what a service worker is (not all old browsers do)
+  if ("serviceWorker" in navigator) {
+    try {
+      // Try to register the service worker file called 'sw.js' for the whole website ('/')
+      const registration = await navigator.serviceWorker.register("app.js", {
+        scope: "/",
+      });
+
+      // After registering, check what the service worker is doing right now
+      if (registration.installing) {
+        console.log("Service worker installing"); // It’s still installing
+      } else if (registration.waiting) {
+        console.log("Service worker installed"); // It's installed but not doing anything yet
+      } else if (registration.active) {
+        console.log("Service worker active"); // It's installed and actively working
+      }
+    } catch (error) {
+      // If something goes wrong when trying to register, show the error message
+      console.error(`Registration failed with ${error}`);
+    }
+  }
+};
+
+// Running the function for setting up the service worker
+registerServiceWorker();
+
+</script>
+   
+
+
+</body>
+</html>
